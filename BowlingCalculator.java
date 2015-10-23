@@ -1,4 +1,3 @@
-
 package bowlingtest;
 
 import java.util.List;
@@ -15,53 +14,31 @@ public class BowlingCalculator {
 		input = Chars.asList(entry.toCharArray());
 
 		for (int n = 0; n < input.size(); n++) {
-
 			if ((tries == 20)) {
 				break;
 			} else {
-//Integer.parseInt(input.get(n).toString());
-				switch (input.get(n)) {
-				case '0':
-				case '1':
-				case '2':
-				case '3':
-				case '4':
-				case '5':
-				case '6':
-				case '7':
-				case '8':
-				case '9':
-					addRoll(n);
+				addToResult(n);
+				if (input.get(n) == 'X') {
+					addToResult(n+1);
+					addToResult(n+2);
 					tries = tries + 1;
-					break;
-
-				case 'X':
-
-					result = result + con.getChangedLetterToNumber(input.get(n))
-							+ con.getChangedLetterToNumber(input.get(n + 1))
-							+ con.getChangedLetterToNumber(input.get(n + 2));
-					tries = tries + 2;
-
-					break;
-
-				case '/':
-					result = result + con.getChangedLetterToNumber(input.get(n))
-							+ con.getChangedLetterToNumber(input.get(n + 1))
-							- con.getChangedLetterToNumber(input.get(n - 1));
-					
-					tries = tries + 1;
-					break;
-
-				default:
-					tries = tries + 1;
-					break;
+				} else if (input.get(n) == '/') {
+					addToResult(n+1);
+					removeFromResult(n-1);
 				}
+				tries = tries + 1;
 			}
 		}
 		return result;
 	}
 
-	private void addRoll(int n) {
-		result = result + con.getChangedLetterToNumber(input.get(n));
+	public int removeFromResult(int position) {
+		result = result - con.getChangedLetterToNumber(input.get(position));
+		return result; 
+	}
+
+	public int addToResult(int position) {
+		result = result + con.getChangedLetterToNumber(input.get(position));
+		return result;
 	}
 }
