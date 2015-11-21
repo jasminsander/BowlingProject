@@ -1,5 +1,6 @@
 package bowlingtest;
 
+//Class converts from character to number
 public class BowlingConverter {
 
 	public int getChangedLetterToNumber(Character letter) {
