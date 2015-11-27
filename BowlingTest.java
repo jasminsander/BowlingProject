@@ -37,12 +37,7 @@ public class BowlingTest {
 		int result = calc.calculateResult("5/5/5/5/5/5/5/5/5/5/5");
 		assertThat(result,CoreMatchers.is(150));
 	}
-	@Test
-	public void tooLong() {
-		BowlingCalculator calc = new BowlingCalculator();
-		int result = calc.calculateResult("9/345/X6123XXXX4539012383");
-		assertThat(result,CoreMatchers.is(172));
-	}
+	
 	
 
 }
